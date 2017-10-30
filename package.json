@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "cordova plugin for hikvision",
   "main": "index.js",
+  "cordova": {
+    "id": "cordova-plugin-ezviz",
+    "platforms": [
+      "android"
+    ]
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
