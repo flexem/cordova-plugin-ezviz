@@ -652,8 +652,12 @@ public class EZRealPlayActivity extends Activity implements OnClickListener, Sur
         } else {
             //mPortraitTitleBar.setBackgroundColor(getResources().getColor(R.color.black_bg));
         }
+
+        mPortraitTitleBar.setStyle(Color.rgb(0xff, 0xff, 0xff), getResources().getDrawable(R.color.blue_title),
+                getResources().getDrawable(R.drawable.message_back_selector));
+
         mLandscapeTitleBar = (TitleBar) findViewById(R.id.title_bar_landscape);
-        mLandscapeTitleBar.setStyle(Color.rgb(0xff, 0xff, 0xff), getResources().getDrawable(R.color.dark_bg_70p),
+        mLandscapeTitleBar.setStyle(Color.rgb(0xff, 0xff, 0xff), getResources().getDrawable(R.color.blue_title),
                 getResources().getDrawable(R.drawable.message_back_selector));
         mLandscapeTitleBar.setOnTouchListener(this);
         mFullScreenTitleBarBackBtn = new CheckTextButton(this);
