@@ -4,8 +4,7 @@
 ## Using
 
 Install the plugin
-    $ cordova plugin add https://github.com/yoli799480165/cordova-plugin-ezviz.git --variable APP_KEY="Your APPKEY"
-
+    $ cordova plugin add https://github.com/yoli799480165/cordova-plugin-ezviz.git --variable APP_KEY="Your APPKEY"  
 
 Ionic2 usage
 
@@ -17,11 +16,11 @@ declare var ezviz: any;
 
 In your page file:
 ```js
-ezviz.preview('your token', 'your camera sn', 0, '', '', '', () => {
-        console.log('success');
-    }, () => {
-        console.log('error');
-    });
+ezviz.openCamera('appkey','accesstoken', 'sn', 0).then((ok) => {
+    console.log(ok);
+}, (error) => {
+    console.log(error); 
+});
 ```
 
 Install iOS or Android platform
