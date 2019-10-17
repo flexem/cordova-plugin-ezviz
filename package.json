@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/yoli799480165/cordova-plugin-ezviz.git"
+    "url": "https://github.com/flexem/cordova-plugin-ezviz.git"
   },
   "keywords": [
     "cordova",
@@ -24,7 +24,7 @@
   "author": "flexem",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/yoli799480165/cordova-plugin-ezviz/issues"
+    "url": "https://github.com/flexem/cordova-plugin-ezviz/issues"
   },
-  "homepage": "https://github.com/yoli799480165/cordova-plugin-ezviz#readme"
+  "homepage": "https://github.com/flexem/cordova-plugin-ezviz#readme"
 }

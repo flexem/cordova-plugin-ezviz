@@ -1,10 +1,12 @@
-# 海康萤石的phonegap/cordova 插件
+# 海康萤石的cordova 插件
 
 
 ## Using
 
-Install the plugin
-    $ cordova plugin add https://github.com/yoli799480165/cordova-plugin-ezviz.git --variable APP_KEY="Your APPKEY"  
+Add the plugin
+```bash
+cordova plugin add cordova-plugin-ezviz --variable APP_KEY="Your APPKEY"
+```
 
 Ionic2 usage
 
@@ -24,9 +26,11 @@ ezviz.openCamera('appkey','accesstoken', 'sn', 0).then((ok) => {
 ```
 
 Install iOS or Android platform
-
-    cordova platform add android
+```
+cordova platform add android
+```
 
 Run the code
-
-    cordova run android --device
+```
+cordova run android --device
+```
