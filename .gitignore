@@ -57,11 +57,11 @@ jspm_packages
 .idea/uiDesigner.xml
 
 # Gradle:
-.idea/gradle.xml
-.idea/libraries
-
-# Mongo Explorer plugin:
-.idea/mongoSettings.xml
+.idea/
+**/.idea/
+.gradle
+**/.gradle
+.settings
 
 ## File-based project format:
 *.iws
@@ -83,13 +83,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
-将删除 .gitignore
-将删除 .idea/cordova-plugin-ezviz.iml
-将删除 .idea/modules.xml
-将删除 .idea/workspace.xml
-将删除 ezsdk/app/libs/
-将删除 ezsdk/app/src/main/java/
-将删除 ezsdk/app/src/main/res/drawable/
-将删除 ezsdk/ezviz/libs/armeabi/
-将删除 libs/armeabi/
-将删除 libs/ezvizsdk-debug.aar
+ezsdk/build/
+ezsdk/local.properties
+**/*.iml
