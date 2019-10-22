@@ -1,5 +1,4 @@
-# 海康萤石的cordova 插件
-
+# Cordova Plugin For Hikvision
 
 ## Using
 

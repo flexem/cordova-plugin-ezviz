@@ -79,6 +79,6 @@
         </config-file>
         <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
         <source-file src="src/android/ezviz.java" target-dir="src/com/laitron/ezviz/"/>
-        <resource-file src="libs/ezvizsdk.aar" target="app/libs/ezvizsdk.aar" />
+        <lib-file src="libs/ezvizsdk.aar"/>
     </platform>
 </plugin>
