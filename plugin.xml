@@ -1,84 +1,318 @@
-<?xml version="1.0" encoding="utf-8"?>
-<plugin 
-    xmlns="http://www.phonegap.com/ns/plugins/1.0" id="cordova-plugin-ezviz" version="0.7.0">
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-ezviz" version="2.0.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Ezviz</name>
-    <engines>
-        <engine name="cordova" version=">=3.4.0"/>
-    </engines>
     <asset src="www/ezviz.js" target="js/ezviz.js"/>
-    <js-module src="www/ezviz.js" name="ezviz">
+    <js-module name="ezviz" src="www/ezviz.js">
         <clobbers target="ezviz" />
     </js-module>
+
     <platform name="android">
-        <preference name="APP_KEY"/>
-        <preference name="PKG_NAME" default="com.usky.smarthome" />
-        <config-file target="./res/values/strings.xml" parent="/resources">
-            <string name="appkey">$APP_KEY</string>
-        </config-file>
-        <config-file target="res/xml/config.xml" parent="/*">
-            <feature name="ezviz">
-                <param name="android-package" value="com.laitron.ezviz.ezviz"/>
+        <preference name="PKG_NAME" default="flexem.fbox.assistant" />
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Ezviz">
+                <param name="android-package" value="org.apache.cordova.ezviz.Ezviz" />
             </feature>
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/*">
-            <uses-permission android:name="android.permission.INTERNET" />
-            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-            <uses-permission android:name="android.permission.WRITE_OWNER_DATA"/>
-            <uses-permission android:name="android.permission.CAMERA"/>
-            <uses-permission android:name="android.permission.VIBRATE"/>
-            <uses-permission android:name="android.permission.FLASHLIGHT"/>
-            <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-            <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-            <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
-            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-            <uses-permission android:name="android.permission.READ_LOGS"/>
-            <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-            <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
-            <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-            <!-- zxing -->
-            <uses-permission android:name="android.permission.CAMERA"/>
-            <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
-            <uses-permission android:name="android.permission.VIBRATE"/>
-            <uses-permission android:name="android.permission.FLASHLIGHT"/>
-            <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE"/>
-            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-            <!-- Keeps the processor from sleeping when a message is received. -->
-            <uses-permission android:name="android.permission.WAKE_LOCK" />
-            <permission android:name="$PKG_NAME.permission.C2D_MESSAGE" android:protectionLevel="signature"/>
-            <!-- This app has permission to register and receive data message. -->
-            <uses-permission android:name="$PKG_NAME.permission.RECEIVE"/>
-            <!-- Creates a custom permission so only this app can receive its messages. NOTE: APP_PACKAGE.permission.C2D_MESSAGE -->
-            <uses-permission android:name="$PKG_NAME.permission.C2D_MESSAGE"/>
-        </config-file>
         <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <!--SDK4.2及之后需要在Mainfest.xml设置Accesskey，且必须正确设置，在application标签中加入-->
-            <meta-data android:name="com.videogo.ezviz.Accesskey" android:value="$APP_KEY" />
-            <activity android:name="com.videogo.main.EzvizWebViewActivity" android:configChanges="orientation|keyboardHidden" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.remoteplayback.list.PlayBackListActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:screenOrientation="nosensor"/>
-            <activity android:name="com.videogo.ui.cameralist.EZCameraListActivity" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.ui.realplay.EZRealPlayActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:screenOrientation="portrait" android:theme="@android:style/Theme.NoTitleBar" />
-            <activity android:name="com.videogo.ui.message.EZMessageImageActivity2" android:screenOrientation="portrait"></activity>
-            <activity android:name="com.videogo.ui.message.EZMessageActivity2" android:screenOrientation="portrait"></activity>
-            <activity android:name="com.videogo.ui.remoteplayback.EZRemotePlayBackActivity" android:configChanges="orientation|keyboardHidden|screenSize" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.devicemgt.EZDeviceSettingActivity" android:screenOrientation="portrait"></activity>
-            <activity android:name="com.videogo.devicemgt.ModifyDeviceNameActivity" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.scan.main.CaptureActivity" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.ui.devicelist.SeriesNumSearchActivity" android:launchMode="singleTask" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize"/>
-            <activity android:name="com.videogo.ui.devicelist.AutoWifiNetConfigActivity" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.ui.devicelist.AutoWifiConnectingActivity" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.ui.devicelist.AutoWifiPrepareStepOneActivity" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.ui.devicelist.AutoWifiResetActivity" android:screenOrientation="portrait"/>
-            <activity android:name="com.videogo.test.InterfaceTestActivity"></activity>
-            <activity android:name="com.videogo.test.InterfaceSelfTestActivity"></activity>
-            <activity android:name="com.videogo.devicemgt.EZUpgradeDeviceActivity" android:label="@string/title_activity_ezupgrade_device"></activity>
+            <activity
+                android:name="com.videogo.main.EzvizWebViewActivity"
+                android:configChanges="orientation|keyboardHidden"
+                android:screenOrientation="portrait" />
+            <activity
+                android:name="com.videogo.ui.realplay.EZRealPlayActivity"
+                android:configChanges="orientation|keyboardHidden|screenSize"
+                android:screenOrientation="portrait"
+                android:theme="@android:style/Theme.NoTitleBar" />
         </config-file>
-        <framework src="src/android/build.gradle" custom="true" type="gradleReference" />
-        <source-file src="src/android/ezviz.java" target-dir="src/com/laitron/ezviz/"/>
-        <lib-file src="libs/ezvizsdk.aar"/>
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <!-- 以下是sdk所需权限 -->
+            <!-- 基础功能所需权限 -->
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+            <!-- 配网所需权限 -->
+            <uses-permission android:name="android.permission.INTERNET" />
+            <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_MULTICAST_STATE" />
+            <!-- 对讲所需权限 -->
+            <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+            <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+            <!-- 视频通话权限所需 -->
+            <uses-permission android:name="android.permission.CAMERA" />
+            <uses-permission android:name="android.permission.RECORD_AUDIO" />
+            <uses-permission android:name="android.permission.BLUETOOTH" />
+            <!-- 以上是sdk所需权限 -->
+
+            <!-- 以下是插件所需权限 -->
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+            <!-- <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+            <uses-permission android:name="android.permission.READ_LOGS" /> -->
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.CAMERA" />
+            <!-- 以上是插件所需权限 -->
+
+            <uses-permission android:name="android.permission.VIBRATE" />
+            <uses-permission android:name="android.permission.FLASHLIGHT" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            
+        </config-file>
+
+        <framework src="src/android/app/build.gradle" custom="true" type="gradleReference" />
+        <!-- <framework src="src/android/app/proguard-rules.pro" custom="true" /> -->
+        <source-file src="src/android/Ezviz.java" target-dir="src/org/apache/cordova/ezviz" />
+
+        <source-file src="src/android/app/src/main/java/com/videogo/ui/common/ScreenOrientationHelper.java" target-dir="com/videogo/ui/common"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/ui/realplay/EZRealPlayActivity.java" target-dir="com/videogo/ui/realplay"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/ui/realplay/RealPlaySquareInfo.java" target-dir="com/videogo/ui/realplay"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/ui/util/AudioPlayUtil.java" target-dir="com/videogo/ui/util"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/ui/util/DataManager.java" target-dir="com/videogo/ui/util"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/ui/util/EZUtils.java" target-dir="com/videogo/ui/util"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/ui/util/VerifyCodeInput.java" target-dir="com/videogo/ui/util"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/widget/PagesGallery.java" target-dir="com/videogo/widget"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/widget/PtzControlAngleView.java" target-dir="com/videogo/widget"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/widget/WaitDialog.java" target-dir="com/videogo/widget"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/widget/loading/LoadingTextView.java" target-dir="com/videogo/widget/loading"/>
+        <source-file src="src/android/app/src/main/java/com/videogo/widget/loading/LoadingView.java" target-dir="com/videogo/widget/loading"/>
+        <source-file src="src/android/app/src/main/java/ezviz/common/Config.java" target-dir="ezviz/common"/>
+        <source-file src="src/android/app/src/main/java/ezviz/common/LogUtil.java" target-dir="ezviz/common"/>
+        <source-file src="src/android/app/src/main/java/ezviz/common/RootActivity.java" target-dir="ezviz/common"/>
+        <source-file src="src/android/app/src/main/java/ezviz/common/SdkInitParams.java" target-dir="ezviz/common"/>
+        <source-file src="src/android/app/src/main/java/ezviz/common/SdkInitTool.java" target-dir="ezviz/common"/>
+        <source-file src="src/android/app/src/main/java/ezviz/common/SpTool.java" target-dir="ezviz/common"/>
+        <source-file src="src/android/app/src/main/java/ezviz/common/MResource.java" target-dir="ezviz/common"/>
+		
+		<source-file src="src/android/app/src/main/res/anim/fade_down.xml" target-dir="res/anim"/>
+		<source-file src="src/android/app/src/main/res/anim/fade_up.xml" target-dir="res/anim"/>
+		<source-file src="src/android/app/src/main/res/anim/trm_popup_enter.xml" target-dir="res/anim"/>
+		<source-file src="src/android/app/src/main/res/anim/trm_popup_exit.xml" target-dir="res/anim"/>
+		<source-file src="src/android/app/src/main/res/color/quality_color_selector.xml" target-dir="res/color"/>
+        <source-file src="src/android/app/src/main/res/drawable/backbtn_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/common_loading_indeterminate.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/common_refresh_indeterminate.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/common_title_back_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/common_title_cancel_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/ez_leave_message_play_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/ezopen_vertical_preview_sound_off_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/ezopen_vertical_preview_sound_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/fullscreen_button_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/grouplayout_item_bg_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/horizontal_fullscreen_button_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/message_back_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/my_progress_drawable.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_balanced_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_bigbtn_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_close_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_flunet_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_full_play_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_full_previously_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_full_ptz_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_full_soundoff_btn_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_full_soundon_btn_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_full_stop_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_full_video_now_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_full_video_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_hd_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_play_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_previously_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_privacy_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_ptz_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_stop_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_talk_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_talkback_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_video_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/play_voice_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/playbtn_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/preview_enlarge_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/ptz_turn_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/speech.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/speech_full_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/stopbtn_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable/video_quality_selector.xml" target-dir="res/drawable"/>
+        <source-file src="src/android/app/src/main/res/drawable-ldpi/play_full_multiple_anim_bg.xml" target-dir="res/drawable-ldpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/alarm_encrypt_image_mid.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/amplify_screen_dis.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/amplify_screen_normal.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/amplify_screen_pressed.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/back.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/back_press.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/common_loading.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/common_refresh.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/common_title.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/common_title_back.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/common_title_back_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/common_title_cancel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/common_title_cancel_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/control_bar_bg.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/default_figure.jpg" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/event_list_fail_pic.jpg" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ez_real_play.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ez_real_play_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/horizontal_shrink_screen_normal.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/horizontal_shrink_screen_pressed.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/left_twinkle.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/logo_loading_1.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/logo_loading_2.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/logo_loading_3.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/logo_loading_4.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/message_back.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/message_back_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/notify_bg.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_balanced.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_balanced_disabel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_balanced_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_big.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_big_press.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_close.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_close_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_disable.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_flunet.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_flunet_disabel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_flunet_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_multiple.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_multiple2.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_multiple3.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_multiple4.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_multiple5.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_play.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_play_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_previously.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_previously_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_stop.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_stop_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_video.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_video_now.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_video_now_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_full_video_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_hd.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_hd_disabel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_hd_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_press.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_previously.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_previously_dis.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_previously_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_ptz.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_ptz_dis.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_ptz_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_stop.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_stop_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_talk.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_talk_dis.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_talk_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_talkback.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_talkback_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_video.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_video_dis.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_video_record.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_video_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_video_time_bg.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_voice.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_voice_dis.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/play_voice_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_close1_video_ico.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_close_video.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_close_video_dis.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_close_video_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_enlarge.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_enlarge_btn_sel.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_enlarge_dis.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_play_btn.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_play_btn_dis.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_play_btn_sel.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_selection_bg.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_stopplay_btn_dis.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_unvoice_btn.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_unvoice_btn_sel.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_video_selection.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_video_selection_hover.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_voice_btn.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_voice_btn_dis.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/preview_voice_btn_sel.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ptz_bg.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ptz_bottom_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ptz_left_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ptz_prompt.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ptz_right_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ptz_turn.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ptz_turn_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/ptz_up_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/shrink_screen_normal.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/shrink_screen_pressed.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/sound_off.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/sound_off_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/sound_on.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/sound_on_sel.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/sound_source.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/speech_0.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/speech_1.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/speech_2.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/speech_3.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/speech_4.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/speech_5.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/stop.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/stop_disable.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/stop_press.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/stoplay_btn.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/stoplay_btn_sel.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/top_bar_bg.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/video_file_watermark.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/waiting_bg.9.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/waiting_progressbar_bg.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/yuntai_normal.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/drawable-xhdpi/yuntai_pressed.png" target-dir="res/drawable-xhdpi"/>
+        <source-file src="src/android/app/src/main/res/layout/ez_play_control.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/ez_realplay_page.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/ez_realplay_prompt_layout.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/ezopen_realplay_operate_bar.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/ezopen_realplay_operate_bar2.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/layout_dialog_tip.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/loading_text_view.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_control_layout.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_full_operate_layout.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_loading_layout.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_operate_bar.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_operate_bar2.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_page.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_prompt_layout.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_ptz_wnd.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_quality_items.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_quality_wnd.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplay_talkback_wnd.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplayer_item.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/realplayer_page.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/layout/wait_dialog.xml" target-dir="res/layout"/>
+        <source-file src="src/android/app/src/main/res/mipmap/videogo_icon.png" target-dir="res/mipmap"/>
+        <source-file src="src/android/app/src/main/res/raw/paizhao.mp3" target-dir="res/raw"/>
+        <source-file src="src/android/app/src/main/res/raw/record.wav" target-dir="res/raw"/>
+
+        <resource-file src="src/android/app/src/main/res/values/arrays.xml" target="res/values/arrays.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/attr.xml" target="res/values/attr.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/color.xml" target="res/values/color.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/colors_v3.xml" target="res/values/colors_v3.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/dimens.xml" target="res/values/dimens.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/dimens_new.xml" target="res/values/dimens_new.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/ids.xml" target="res/values/ids.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/strings.xml" target="res/values/strings.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/style.xml" target="res/values/style.xml"/>
+        <resource-file src="src/android/app/src/main/res/values/styles.xml" target="res/values/styles.xml"/>
+        <resource-file src="src/android/app/src/main/res/values-zh/strings.xml" target="res/values-zh/strings.xml"/>
+
+        <!-- <source-file src="src/android/app/libs/zxing.jar" target-dir="libs"/> -->
+        <source-file src="src/android/app/libs/glide-3.6.1.jar" target-dir="libs"/>
+    </platform>
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="Ezviz">
+                <param name="ios-package" value="Ezviz" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/Ezviz.m" />
     </platform>
 </plugin>
