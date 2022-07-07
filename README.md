@@ -1,4 +1,5 @@
 # Cordova Plugin For Hikvision
+ezviz cordova plugin
 
 ## Using
 
