@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <string name="app_name">EZVIZ</string>
+    <string name="launcher_name">@string/app_name</string>
+    <string name="activity_name">@string/launcher_name</string>
+    <string name="realplay_play_fail">Playback failed.</string>
+    <string name="realplay_encrypt_password_error_message">Enter the password as the video is encrypted. The default password is the device verification code on the device label. If no verification code on your device, Input the default verification code: ABCDEF (upper-case).</string>
+    <string name="realplay_play_fail_becauseof_network">Video playback failed. Check your network.</string>
+    <string name="realplay_play_talkback_network_exception">Network exception. The two-way audio is turned off.</string>
+    <string name="realplay_play_talkback_request_timeout">Requesting timed out. The two-way audio is turned off.</string>
+    <string name="realplay_play_talkback_fail">Turning the two-way audio on failed.</string>
+    <string name="realplay_play_talkback_fail_ison">Two-way audio can be enabled for only one device at the same time. Please stop the two-way audio of other device first and try again.</string>
+    <string name="realplay_play_talkback_fail_privacy">Operation failed. The privacy mask of the device is enabled.</string>
+    <string name="realplay_set_vediomode_fail">Switching the video quality failed.</string>
+    <string name="realplay_set_fail_network">Operation failed. Check your network.</string>
+    <string name="realplay_fail_device_not_exist">Offline Device(s)</string>
+    <string name="realplay_fail_connect_device">Operation failed, device connection exception.</string>
+    <string name="realplay_loading">Loading…Please wait.</string>
+    <!-- 历史录像回放界面 -->
+    <string name="remoteplayback_over_link">No more connection is allowed. Please disconnect from other terminals and try again.</string>
+    <string name="remoteplayback_record_fail">Operation failed.</string>
+    <!-- 条形码、二维码扫描 -->
+    <!-- 一键配置模块 -->
+    <string name="countdown">%d left for the message.</string>
+    <string name="talking">Talking...</string>
+    <string name="press_to_talk_release_to_listen">Hold to Talk\nRelease to Listen</string>
+    <string name="start_voice_talk">Starting two-way audio…</string>
+    <string name="setting_video_level">Processing…</string>
+    <string name="input_device_verify_code">Enter the device verification code.</string>
+    <string name="source_detection_off">OFF</string>
+    <string name="realplay_full_talk_start_tip">Start</string>
+    <string name="camera_lens_too_busy">Camera is moving. Please wait.</string>
+    <string name="ptz_is_preseting">Camera is moving. Please wait.</string>
+    <string name="ptz_control_timeout_cruise_track_failed">Device is in operation, please wait…</string>
+    <string name="ptz_preset_invalid_position_failed">The current preset location has been deleted. Please refresh the list.</string>
+    <string name="ptz_preset_current_position_failed">Preset already loaded.</string>
+    <string name="ptz_preset_sound_localization_failed">Locating sound... Please wait.</string>
+    <string name="ptz_operation_failed">Operation failed.</string>
+    <string name="ptz_operation_too_frequently">Too many operations, please wait.</string>
+    <string name="ptz_preset_exceed_maxnum_failed">No more can be added.</string>
+    <string name="ptz_privacying_failed">PTZ operation failed. The lens is masked.</string>
+    <string name="ptz_mirroring_failed">Operation failed, you cannot operate PTZ while two-way audio is active.</string>
+
+    <string name="quality_super_hd">Super HD</string>
+    <string name="quality_hd">HD</string>
+    <string name="quality_balanced">Balanced</string>
+    <string name="quality_flunet">Fluent</string>
+    <string name="ptz">PTZ</string>
+    <string name="talk">Two-way Audio</string>
+    <string name="capture">Snapshot</string>
+    <string name="record">Video</string>
+    <string name="close_camera_lens">Privacy Mode</string>
+    <string name="camera_lens_closed">The Privacy Mask is on.</string>
+    <string name="close_source_localization">Audio Tracking disabled.</string>
+    <string name="loading_text_default">Loading...Please wait.</string>
+
+    <!--
+    <string name="tip_heard_voice">请将设备插上电后等待大约30秒，直到听到“请用萤石客户端配置Wi-Fi”</string>
+     -->
+    <!--
+    <string name="autowifi_heard_voice">我已听到语音提示</string>
+    <string name="autowifi_not_heard_voice">我没有听到语音提示</string>
+     -->
+    <!-- 下列字符为消除xml警告而定义 -->
+    <string name="already_saved_to_volume">Saved to Album.</string>
+    <!--
+    <string name="serial_number_error">序列号错误</string>
+    <string name="open_camera_fail">打开相机失败，请选择手动输入添加设备</string>
+     -->
+
+
+    <string name="login_expire">invalid AppKey or AccessToken, please login again!</string>
+    <string name="tip_of_bad_net">can not connect to server, please check your phone network!</string>
+    <string name="sdk_is_init">SDK is initializing</string>
+    <string name="cancel_init_sdk">cancel init SDK!</string>
+    <string name="switch_to_handset">switch to handset</string>
+    <string name="switch_to_speaker">switch to speaker</string>
+    <string name="stream_type">stream type: </string>
+    <string name="btn_ensure">ensure</string>
+    <!--    <String name="device_no_support_talkback">the device does not support talkback</String>-->
+    <!--儿童手表-视频通话-->
+    <string name="device_no_support_talkback">该设备不支持对讲</string>
+    <!--儿童手表-视频通话-->
+
+    <!-- 云存储新接口-->
+</resources>

@@ -5,7 +5,7 @@ ezviz cordova plugin
 
 Add the plugin
 ```bash
-cordova plugin add cordova-plugin-ezviz --variable APP_KEY="Your APPKEY"
+cordova plugin add cordova-plugin-ezviz
 ```
 
 Ionic2 usage
@@ -18,7 +18,7 @@ declare var ezviz: any;
 
 In your page file:
 ```js
-ezviz.openCamera('appkey','accesstoken', 'sn', 0).then((ok) => {
+ezviz.openCamera('appkey','accesstoken', 'sn', 0, '', (ok) => {
     console.log(ok);
 }, (error) => {
     console.log(error); 

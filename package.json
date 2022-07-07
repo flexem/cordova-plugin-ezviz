@@ -1,12 +1,13 @@
 {
   "name": "cordova-plugin-ezviz",
-  "version": "1.0.5",
-  "description": "cordova plugin for hikvision",
+  "version": "2.0.0",
+  "description": "cordova plugin for ezviz",
   "main": "index.js",
   "cordova": {
     "id": "cordova-plugin-ezviz",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "scripts": {
