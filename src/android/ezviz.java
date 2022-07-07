@@ -1,85 +1,109 @@
-package com.laitron.ezviz;
+package org.apache.cordova.ezviz;
 
-import android.content.Intent;
-import org.apache.cordova.*;
-import org.json.JSONArray;
-import org.json.JSONException;
-import com.videogo.constant.IntentConsts;
-import com.videogo.errorlayer.ErrorInfo;
+import android.widget.Toast;
+
 import com.videogo.exception.BaseException;
 import com.videogo.openapi.bean.EZCameraInfo;
-import com.videogo.ui.realplay.EZRealPlayActivity;
-import com.videogo.openapi.EZOpenSDK;
-import com.videogo.ui.util.EZUtils;
 import com.videogo.openapi.bean.EZDeviceInfo;
-import com.videogo.util.LogUtil;
-import android.os.Bundle;
+import com.videogo.ui.realplay.EZRealPlayActivity;
+import com.videogo.ui.util.EZUtils;
 
-public class ezviz extends CordovaPlugin {
-    public String eventName = "";
+import org.apache.cordova.CallbackContext;
+import org.apache.cordova.CordovaPlugin;
+import org.json.JSONArray;
+import org.json.JSONException;
 
-    //第一个参数为请求码，即调用startActivityForResult()传递过去的值
-    //第二个参数为结果码，结果码用于标识返回数据来自哪个新Activity
+import ezviz.common.SdkInitParams;
+import ezviz.common.SdkInitTool;
+import flexem.fbox.assistant.R;
+
+/**
+ * This class echoes a string called from JavaScript.
+ */
+public class Ezviz extends CordovaPlugin {
+
+    public SdkInitParams mInitParams;
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        String result = data.getExtras().getString("result");//得到新Activity关闭后返回的数据
-        if (requestCode == 100) {
-            //前面的 Activity退出了
-        }
-    }
-
-    @Override
-    public boolean execute(String action, JSONArray data, CallbackContext callbackContext) throws JSONException {
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("openCamera")) {
-            String appkey = data.getString(0);
-            String accessToken = data.getString(1);
-            String deviceSerial = data.getString(2);
-            int camera_index = data.getInt(3);
-            try {
-                initSDK(appkey);
-                EZOpenSDK.getInstance().setAccessToken(accessToken);
-                EZDeviceInfo deviceInfo = EZOpenSDK.getInstance().getDeviceInfo(deviceSerial);
-                Intent toIntent = new Intent(cordova.getActivity(), EZRealPlayActivity.class);
-                EZCameraInfo cameraInfo = null;
-                cameraInfo = EZUtils.getCameraInfoFromDevice(deviceInfo, camera_index);
-
-                if (cameraInfo == null) {
-                    callbackContext.error("没有找到摄像头信息");
-                    return false;
-                } else {
-                    toIntent.putExtra(IntentConsts.EXTRA_CAMERA_INFO, cameraInfo);
-                    toIntent.putExtra(IntentConsts.EXTRA_DEVICE_INFO, deviceInfo);
-                    Bundle extraInfo = new Bundle();
-                    extraInfo.putParcelable(IntentConsts.EXTRA_CAMERA_INFO, cameraInfo);
-                    extraInfo.putParcelable(IntentConsts.EXTRA_DEVICE_INFO, deviceInfo);
-                    extraInfo.putString("com.laitron.ezviz.action_on_preview", "");
-                    extraInfo.putString("com.laitron.ezviz.evt_on_preview", eventName);
-                    extraInfo.putString("com.laitron.ezviz.light_on_preview", "");
-                    toIntent.putExtras(extraInfo);
-                    cordova.getActivity().startActivityForResult(toIntent, 100);
-                    callbackContext.success("");
-                    return true;
-                }
-            } catch (BaseException e) {
-                e.printStackTrace();
-                ErrorInfo errorInfo = (ErrorInfo) e.getObject();
-                LogUtil.debugLog("ezviz", errorInfo.toString());
-                callbackContext.error(errorInfo.toString());
-                return false;
-            }
-        } else {
-            return false;
+            String appkey = args.getString(0);
+            String accessToken = args.getString(1);
+            String deviceSerial = args.getString(2);
+            int cameraNo = args.getInt(3);
+            String verifyCode = args.getString(4);
+            this.openPlayer(appkey, accessToken, deviceSerial, cameraNo, verifyCode, callbackContext);
+            return true;
         }
+        return false;
     }
 
     @Override
-    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-        super.initialize(cordova, webView);
+    public void onDestroy() {
+        super.onDestroy();
+        closePlayer();
     }
 
-    private void initSDK(String appkey) {
-        EZOpenSDK.showSDKLog(true);
-        EZOpenSDK.enableP2P(true);
-        EZOpenSDK.initLib(this.cordova.getActivity().getApplication(), appkey, "");
+    private void openPlayer(String appkey, String accessToken, String deviceSerial, int cameraNo, String verifyCode,
+            CallbackContext callbackContext) {
+        try {
+            try {
+//                Intent intent = new Intent(cordova.getActivity(), MainActivity.class);
+//                Bundle bundle = new Bundle();
+//                bundle.putString("appkey", appkey);
+//                bundle.putString("accessToken", accessToken);
+//                bundle.putString("deviceSerial", deviceSerial);
+//                bundle.putInt("cameraNo", cameraNo);
+//                bundle.putString("verifyCode", verifyCode);
+//                intent.putExtras(bundle);
+//                cordova.startActivityForResult(Ezviz.this, intent, 100);
+                startPlayer(appkey,accessToken,deviceSerial,cameraNo,verifyCode);
+                callbackContext.success("");
+            } catch (Exception e) {
+                e.printStackTrace();
+                ToastShow("open player run failed: " + e.toString());
+                callbackContext.error("open player run failed: " + e.toString());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            callbackContext.error("open player failed: " + e.toString());
+            ToastShow("open player failed");
+        }
     }
+
+    public void startPlayer(String appKey,String accessToken,String deviceNo,int cameraNo,String verifyCode) {
+        mInitParams = SdkInitParams.createBy(appKey,accessToken,deviceNo,cameraNo,verifyCode);
+        SdkInitTool.initSdk(cordova.getActivity().getApplication(), mInitParams);
+
+        jumpToCameraActivity();
+    }
+    private void jumpToCameraActivity() {
+        try {
+            EZDeviceInfo deviceInfo = SdkInitTool.getOpenSDK().getDeviceInfo(mInitParams.specifiedDevice);
+            EZCameraInfo cameraInfo = EZUtils.getCameraInfoFromDevice(deviceInfo, 0);
+            EZRealPlayActivity.launch(cordova.getContext(),deviceInfo,cameraInfo);
+        } catch (BaseException e) {
+            e.printStackTrace();
+            int errCode = e.getErrorCode();
+            String errMsg;
+            switch (errCode) {
+                case 400031:
+                    errMsg = cordova.getActivity().getApplicationContext().getString(R.string.tip_of_bad_net);
+                    break;
+                default:
+                    errMsg = cordova.getActivity().getApplicationContext().getString(R.string.login_expire);
+                    break;
+            }
+            ToastShow(errMsg);
+        }
+    }
+
+    private void closePlayer() {
+        ToastShow("open player closed");
+    }
+
+    private void ToastShow(String msg) {
+        Toast.makeText(this.cordova.getActivity(), msg, Toast.LENGTH_LONG).show();
+    }
+
 }

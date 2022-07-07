@@ -3,9 +3,3 @@
 .npmignore
 .gradle
 .settings
-ezsdk
-libs/armeabi-v7a
-libs/ezviz-debug.aar
-libs/ezviz-release.aar
-libs/glide-3.6.1.jar
-libs/gson-2.7.jar
