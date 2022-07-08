@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 
 public class WaitDialog extends Dialog {

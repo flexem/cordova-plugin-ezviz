@@ -15,7 +15,7 @@ import org.json.JSONException;
 
 import ezviz.common.SdkInitParams;
 import ezviz.common.SdkInitTool;
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 /**
  * This class echoes a string called from JavaScript.
