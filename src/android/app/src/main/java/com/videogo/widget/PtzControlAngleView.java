@@ -16,8 +16,7 @@ import android.view.View;
 import com.videogo.util.LogUtil;
 import com.videogo.util.Utils;
 
-import flexem.fbox.assistant.R;
-import flexem.fbox.assistant.R.styleable;
+import __PACKAGE_NAME__.R;
 
 public class PtzControlAngleView extends View {
     private final Paint linePaint;
@@ -173,7 +172,7 @@ public class PtzControlAngleView extends View {
         this.ballPaint.setStyle(Style.FILL);
         this.lineLength = (float)Utils.dip2px(context, 3.0F);
         this.ballRadius = (float)Utils.dip2px(context, 3.0F);
-        TypedArray a = this.getContext().obtainStyledAttributes(attrs, styleable.LiveplayPtzControlAngleView);
+        TypedArray a = this.getContext().obtainStyledAttributes(attrs, R.styleable.LiveplayPtzControlAngleView);
         this.style = a.getInt(R.styleable.LiveplayPtzControlAngleView_liveplay_angle_style, 4);
         a.recycle();
     }

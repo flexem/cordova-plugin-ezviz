@@ -18,7 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.videogo.constant.Constant;
 import com.videogo.util.Utils;
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 public class VerifyCodeInput {
 

@@ -112,7 +112,7 @@ import java.util.TimerTask;
 
 import ezviz.common.RootActivity;
 import ezviz.common.SdkInitTool;
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 import static com.videogo.openapi.EZConstants.MSG_GOT_STREAM_TYPE;
 import static com.videogo.openapi.EZConstants.MSG_VIDEO_SIZE_CHANGED;

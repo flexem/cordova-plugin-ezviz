@@ -10,7 +10,7 @@ import android.view.View;
 
 import com.videogo.util.Utils;
 
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 public class LoadingView extends View {
 

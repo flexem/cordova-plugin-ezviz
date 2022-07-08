@@ -12,7 +12,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 public class LoadingTextView extends FrameLayout {
 

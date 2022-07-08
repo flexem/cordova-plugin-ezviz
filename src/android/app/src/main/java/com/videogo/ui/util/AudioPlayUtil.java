@@ -22,7 +22,7 @@ import android.media.SoundPool;
 
 import java.util.HashMap;
 
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 
 public class AudioPlayUtil {

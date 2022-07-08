@@ -31,7 +31,7 @@ import java.io.InputStream;
 import java.lang.reflect.Method;
 
 import ezviz.common.SdkInitTool;
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 public class EZUtils {
 

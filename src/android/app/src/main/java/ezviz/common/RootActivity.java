@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import flexem.fbox.assistant.R;
+import __PACKAGE_NAME__.R;
 
 @SuppressLint("Registered")
 public class RootActivity extends Activity {
