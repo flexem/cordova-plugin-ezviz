@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-ezviz",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "cordova plugin for ezviz",
   "main": "index.js",
   "cordova": {
