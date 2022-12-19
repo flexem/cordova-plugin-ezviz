@@ -40,7 +40,7 @@ public class DataManager {
     }
 
     public synchronized String getDeviceSerialVerifyCode(String deviceSerial){
-        return mDeviceSerialVerifyCodeMap.get((Object)deviceSerial);
+        return mDeviceSerialVerifyCodeMap.get(deviceSerial);
     }
 }
 
