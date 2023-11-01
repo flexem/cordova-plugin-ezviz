@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-ezviz" version="2.0.0"
+<plugin id="cordova-plugin-ezviz" version="2.2.2"
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>Ezviz</name>
@@ -90,7 +90,6 @@
         <source-file src="src/android/app/src/main/java/ezviz/common/RootActivity.java" target-dir="ezviz/common"/>
         <source-file src="src/android/app/src/main/java/ezviz/common/SdkInitParams.java" target-dir="ezviz/common"/>
         <source-file src="src/android/app/src/main/java/ezviz/common/SdkInitTool.java" target-dir="ezviz/common"/>
-        <source-file src="src/android/app/src/main/java/ezviz/common/SpTool.java" target-dir="ezviz/common"/>
         <source-file src="src/android/app/src/main/java/ezviz/common/MResource.java" target-dir="ezviz/common"/>
 		
 		<source-file src="src/android/app/src/main/res/anim/fade_down.xml" target-dir="res/anim"/>

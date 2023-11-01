@@ -8,15 +8,15 @@ import com.bumptech.glide.load.engine.cache.MemorySizeCalculator;
 import java.util.HashMap;
 import java.util.Map;
 
-import ezviz.common.SpTool;
-
 public class DataManager {
     private static DataManager mDataManager;
 
     private static LruBitmapPool mBitmapPool;
 
+    public static Map<String, String> mDeviceSerialVerifyCodeMap;
+
     private DataManager(){
-        Map<String, String> mDeviceSerialVerifyCodeMap = new HashMap<String, String>();
+        mDeviceSerialVerifyCodeMap = new HashMap<String, String>();
     }
 
    public static DataManager getInstance(){
@@ -36,11 +36,11 @@ public class DataManager {
     }
 
     public synchronized void setDeviceSerialVerifyCode(String deviceSerial,String verifyCode){
-        SpTool.storeValue(deviceSerial, verifyCode);
+        mDeviceSerialVerifyCodeMap.put(deviceSerial, verifyCode);
     }
 
     public synchronized String getDeviceSerialVerifyCode(String deviceSerial){
-        return SpTool.obtainValue(deviceSerial);
+        return mDeviceSerialVerifyCodeMap.get(deviceSerial);
     }
 }
 
